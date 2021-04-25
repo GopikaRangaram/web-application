@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+   	<head>
+      	<link rel="stylesheet" href="Home.css">
+   	</head>
+   	<script>
+		function validateEmail() {
+			var num=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			var name=document.Login.email.value;
+			if( name == null  || name.search(num)== -1) {
+				alert("Enter valid emailid");
+				Login.email.value="";
+				Login.email.focus();
+			}
+		}
+
+		function openForm() {
+  			document.getElementById("myForm").style.display = "block";
+		}
+
+		function closeForm() {
+  			document.getElementById("myForm").style.display = "none";
+		}
+
+		function restrictSpace(event) {
+			var keyCode = event.which||event.keycode;
+			if (keyCode != 32) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+	</script>
+	<style>
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			position: fixed;
+    		top: 0;
+    		bottom: 0;
+		}
+		
+		* {box-sizing: border-box;}
+
+		.form-popup {
+  			display: none;
+  			position: fixed;
+  			top: 15%;
+  			right: 35%;
+  			border: 3px solid #f1f1f1;
+  			z-index: 5;
+		}
+
+		.form-container {
+  			max-width: 300px;
+  			padding: 10px;
+  			background-color: white;
+		}
+
+		.form-container input[type=text], .form-container input[type=password] {
+  			width: 100%;
+  			padding: 15px;
+  			margin: 5px 0 22px 0;
+  			border: none;
+  			background: #f1f1f1;
+		}
+
+		.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  			background-color: #ddd;
+  			outline: none;
+		}
+
+		.form-container .button {
+  			background-color: #4CAF50;
+  			color: white;
+  			padding: 16px 20px;
+  			border: none;
+  			cursor: pointer;
+  			width: 100%;
+  			margin-bottom: 10px;
+  			opacity: 0.8;
+		}
+
+		.form-container .cancel {
+  			background-color: blue;
+		}
+
+		.form-container .button:hover {
+  			opacity: 1;
+		}
+	</style>
+   <body>
+   	<header>
+    	<nav>
+        	<div class="menu-icon">
+            	<i class="fa fa-bars fa-2x"></i>
+            </div>
+            <div class="logo">
+            	LOGO
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Contact</a></li>
+					<li><a href="javascript:openForm()">Login</a></li>
+                </ul>
+          	</div>
+    	</nav>
+    </header>
+	<div class="form-popup" id="myForm">
+  		<form name="Login" class="form-container" method = "post" action = "SignIn">
+    		<h1>Login</h1>
+    		Email<input type="text" name="emailId" onchange="validateEmail()" required>
+    		Password<input type="password" name="password" maxlength="8" required>
+    		<button type="submit" class="button">Login</button>
+    		<button type="button" class="button cancel" onclick="closeForm()">Sign Up</button>
+  		</form>
+	</div>
+   </body>
+</html>
